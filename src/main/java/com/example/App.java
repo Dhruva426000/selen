@@ -11,10 +11,12 @@ public class App {
 
         ChromeOptions options = new ChromeOptions();
 
-        // IMPORTANT for Jenkins
-        options.addArguments("--headless");
+        // Required for Jenkins/Linux
+        options.addArguments("--headless=new");
         options.addArguments("--no-sandbox");
         options.addArguments("--disable-dev-shm-usage");
+        options.addArguments("--remote-allow-origins=*");
+        options.addArguments("--disable-gpu");
 
         WebDriver driver = new ChromeDriver(options);
 
