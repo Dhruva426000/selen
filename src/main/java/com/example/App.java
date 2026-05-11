@@ -9,18 +9,26 @@ public class App {
 
     public static void main(String[] args) {
 
+        // Force chromedriver path
+        System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
+
         ChromeOptions options = new ChromeOptions();
 
+        // Force installed Chrome
+        options.setBinary("/usr/bin/google-chrome");
+
+        // Jenkins compatible options
         options.addArguments("--headless=new");
         options.addArguments("--no-sandbox");
         options.addArguments("--disable-dev-shm-usage");
+        options.addArguments("--disable-gpu");
 
         WebDriver driver = new ChromeDriver(options);
 
         // Open SauceDemo
         driver.get("https://www.saucedemo.com/");
 
-        // Print page details
+        // Print details
         System.out.println("Title: " + driver.getTitle());
         System.out.println("URL: " + driver.getCurrentUrl());
 
