@@ -20,9 +20,9 @@ pipeline {
             }
         }
 
-        stage('Run Selenium') {
+        stage('Test') {
             steps {
-                sh 'mvn exec:java -Dexec.mainClass="com.example.App"'
+                sh 'mvn test'
             }
         }
     }
