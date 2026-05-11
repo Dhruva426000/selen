@@ -36,4 +36,4 @@ public class AppTest
         assertTrue( true );
     }
 }
-        options.setBinary("/usr/bin
+        
