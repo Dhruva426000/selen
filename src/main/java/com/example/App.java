@@ -4,22 +4,32 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.chrome.ChromeDriverService;
+
+import java.io.File;
 
 public class App {
 
     public static void main(String[] args) {
 
+        // Force chromedriver path
+        System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
+
         ChromeOptions options = new ChromeOptions();
 
-        // IMPORTANT
+        // Force system Chrome
         options.setBinary("/usr/bin/google-chrome");
 
-        // Jenkins/Linux headless options
+        // Jenkins headless options
         options.addArguments("--headless=new");
         options.addArguments("--no-sandbox");
         options.addArguments("--disable-dev-shm-usage");
 
-        WebDriver driver = new ChromeDriver(options);
+        ChromeDriverService service = new ChromeDriverService.Builder()
+                .usingDriverExecutable(new File("/usr/local/bin/chromedriver"))
+                .build();
+
+        WebDriver driver = new ChromeDriver(service, options);
 
         driver.get("https://www.saucedemo.com/");
 
