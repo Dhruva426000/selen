@@ -9,28 +9,37 @@ public class App {
 
     public static void main(String[] args) {
 
+        // Chrome options for Jenkins/Linux
         ChromeOptions options = new ChromeOptions();
 
-        // Jenkins/Linux compatible
+        // Use system installed Chrome
+        options.setBinary("/usr/bin/google-chrome");
+
+        // Headless mode for Jenkins
         options.addArguments("--headless");
         options.addArguments("--no-sandbox");
         options.addArguments("--disable-dev-shm-usage");
         options.addArguments("--disable-gpu");
         options.addArguments("--window-size=1920,1080");
 
+        // Launch Chrome
         WebDriver driver = new ChromeDriver(options);
 
+        // Open website
         driver.get("https://www.saucedemo.com/");
 
+        // Login
         driver.findElement(By.id("user-name")).sendKeys("standard_user");
         driver.findElement(By.id("password")).sendKeys("secret_sauce");
         driver.findElement(By.id("login-button")).click();
 
+        // Print success message
         System.out.println("Login Successful");
 
+        // Close browser
         driver.quit();
 
-        // VERY IMPORTANT
+        // Stop lingering threads
         System.exit(0);
     }
 }
