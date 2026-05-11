@@ -2,14 +2,15 @@ pipeline {
     agent any
 
     tools {
-    maven 'Maven'
-}
+        maven 'Maven'
+    }
 
     stages {
 
         stage('Git Checkout') {
             steps {
-                git 'https://github.com/Dhruva426000/selen'
+                git branch: 'main',
+                url: 'https://github.com/Dhruva426000/selen.git'
             }
         }
 
