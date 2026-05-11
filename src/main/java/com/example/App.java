@@ -11,17 +11,16 @@ public class App {
 
         ChromeOptions options = new ChromeOptions();
 
-        // Required for Jenkins/Linux
-        options.addArguments("--headless=new");
+        // Jenkins/Linux compatible
+        options.addArguments("--headless");
         options.addArguments("--no-sandbox");
         options.addArguments("--disable-dev-shm-usage");
-        options.addArguments("--remote-allow-origins=*");
         options.addArguments("--disable-gpu");
+        options.addArguments("--window-size=1920,1080");
 
         WebDriver driver = new ChromeDriver(options);
 
         driver.get("https://www.saucedemo.com/");
-        driver.manage().window().maximize();
 
         driver.findElement(By.id("user-name")).sendKeys("standard_user");
         driver.findElement(By.id("password")).sendKeys("secret_sauce");
@@ -30,5 +29,8 @@ public class App {
         System.out.println("Login Successful");
 
         driver.quit();
+
+        // VERY IMPORTANT
+        System.exit(0);
     }
 }
