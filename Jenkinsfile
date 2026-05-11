@@ -7,16 +7,16 @@ pipeline {
 
     stages {
 
-        stage('Clone') {
+        stage('Checkout') {
             steps {
                 git branch: 'main',
-                url: 'https://github.com/Dhruva426000/selen.git'
+                    url: 'https://github.com/Dhruva426000/selen.git'
             }
         }
 
         stage('Build') {
             steps {
-                sh 'mvn clean compile'
+                sh 'mvn clean package'
             }
         }
 
@@ -24,6 +24,18 @@ pipeline {
             steps {
                 sh 'mvn exec:java -Dexec.mainClass="com.example.App"'
             }
+        }
+    }
+
+    post {
+
+        success {
+            echo 'Login Successful'
+            echo 'Open SauceDemo Inventory Page: https://www.saucedemo.com/inventory.html'
+        }
+
+        failure {
+            echo 'Build FAILED'
         }
     }
 }
