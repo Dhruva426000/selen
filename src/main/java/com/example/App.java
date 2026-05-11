@@ -1,46 +1,39 @@
 package com.example;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
+import junit.framework.Test;
+import junit.framework.TestCase;
+import junit.framework.TestSuite;
 
-public class App {
+/**
+ * Unit test for simple App.
+ */
+public class AppTest 
+    extends TestCase
+{
+    /**
+     * Create the test case
+     *
+     * @param testName name of the test case
+     */
+    public AppTest( String testName )
+    {
+        super( testName );
+    }
 
-    public static void main(String[] args) {
+    /**
+     * @return the suite of tests being tested
+     */
+    public static Test suite()
+    {
+        return new TestSuite( AppTest.class );
+    }
 
-        // Force chromedriver path
-        System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
-
-        ChromeOptions options = new ChromeOptions();
-
-        // Force installed Chrome
-        options.setBinary("/usr/bin/google-chrome");
-
-        // Jenkins compatible options
-        options.addArguments("--headless=new");
-        options.addArguments("--no-sandbox");
-        options.addArguments("--disable-dev-shm-usage");
-        options.addArguments("--disable-gpu");
-
-        WebDriver driver = new ChromeDriver(options);
-
-        // Open SauceDemo
-        driver.get("https://www.saucedemo.com/");
-
-        // Print details
-        System.out.println("Title: " + driver.getTitle());
-        System.out.println("URL: " + driver.getCurrentUrl());
-
-        // Login
-        driver.findElement(By.id("user-name")).sendKeys("standard_user");
-        driver.findElement(By.id("password")).sendKeys("secret_sauce");
-        driver.findElement(By.id("login-button")).click();
-
-        System.out.println("Login Successful");
-
-        driver.quit();
-
-        System.exit(0);
+    /**
+     * Rigourous Test :-)
+     */
+    public void testApp()
+    {
+        assertTrue( true );
     }
 }
+        options.setBinary("/usr/bin
