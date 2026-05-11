@@ -11,10 +11,10 @@ public class App {
 
         ChromeOptions options = new ChromeOptions();
 
-        // Force system Chrome
+        // IMPORTANT
         options.setBinary("/usr/bin/google-chrome");
 
-        // Jenkins/Linux options
+        // Jenkins/Linux headless options
         options.addArguments("--headless=new");
         options.addArguments("--no-sandbox");
         options.addArguments("--disable-dev-shm-usage");
