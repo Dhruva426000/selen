@@ -20,9 +20,9 @@ pipeline {
             }
         }
 
-        stage('Test Selenium Locally') {
+        stage('Run Selenium') {
             steps {
-                echo 'Selenium execution tested successfully in local terminal'
+                sh 'mvn exec:java -Dexec.mainClass="com.example.App"'
             }
         }
     }
